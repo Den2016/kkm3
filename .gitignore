@@ -105,3 +105,6 @@ dist
 
 #webstorm settings
 .idea
+
+#test dev
+kkm3vue

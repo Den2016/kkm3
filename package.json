@@ -29,7 +29,9 @@
   },
   "homepage": "https://github.com/Den2016/kkm3#readme",
   "devDependencies": {
-    "electron": "^8.2.3"
+    "electron": "^8.2.3",
+    "electron-log": "^4.1.1",
+    "electron-rebuild": "^1.10.1"
   },
   "dependencies": {
     "fastify": "^2.13.1",
