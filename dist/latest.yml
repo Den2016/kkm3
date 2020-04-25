@@ -1,0 +1,8 @@
+version: 1.0.1
+files:
+  - url: kkm3-Setup-1.0.1.exe
+    sha512: EiCB2aDxAI3Lhhcw2zSrA8aqDQAV568aPafnZ1JoVWJunP+QBax226GM+w/WOoOYg34bDbOSrpyHZQjWd8PvYA==
+    size: 49630829
+path: kkm3-Setup-1.0.1.exe
+sha512: EiCB2aDxAI3Lhhcw2zSrA8aqDQAV568aPafnZ1JoVWJunP+QBax226GM+w/WOoOYg34bDbOSrpyHZQjWd8PvYA==
+releaseDate: '2020-04-25T05:49:34.964Z'
