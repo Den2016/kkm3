@@ -27,6 +27,8 @@ class Kkm {
                     if (res.ResultCode == 0) {
                         res.newPort = iport;
                         res.newSpeed = ispeed;
+                        this.options.port = iport
+                        this.options.speed = ispeed
                         res.ResultCode = this.FR.ResultCode
                         res.ResultCodeDescription = this.FR.ResultCodeDescription
                         res = {...this._getProps(), ...res}

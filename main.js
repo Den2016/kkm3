@@ -61,6 +61,14 @@ function createWindow() {
     })
 }
 
+let exename=app.getPath("exe")
+if(!exename.includes('node_modules')){
+    app.setLoginItemSettings({
+        openAtLogin: true,
+        path: exename
+    });
+}
+
 app.on('ready', createWindow)
 app.allowRendererProcessReuse = true
 

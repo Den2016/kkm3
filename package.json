@@ -1,13 +1,15 @@
 {
   "name": "kkm3",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "shtrih-m kkm server",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cross-env NODE_ENV=development webpack --mode development",
-    "build": "cd app && npm version patch && cd .. && npm run pack && build -w",
-    "start": "electron ."
+    "oldbuild": "cd app && npm version patch && cd .. && npm run pack && build -w",
+    "build": "electron-builder",
+    "start": "electron .",
+    "upversion": "npm version patch --no-git-tag-version"
   },
   "browserslist": [
     "> 1%",
@@ -30,10 +32,10 @@
   "homepage": "https://github.com/Den2016/kkm3#readme",
   "devDependencies": {
     "electron": "^8.2.3",
-    "electron-log": "^4.1.1",
     "electron-rebuild": "^1.10.1"
   },
   "dependencies": {
+    "electron-log": "^4.1.1",
     "fastify": "^2.13.1",
     "winax": "^1.18.0"
   }
