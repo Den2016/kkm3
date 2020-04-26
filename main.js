@@ -77,6 +77,15 @@ app.fastify = Fastify({
 })
 app.fastify.kkm = new Kkm(options.kkm, myLogger)
 
+app.fastify.setErrorHandler(function (error, request, reply) {
+    // Log error
+    app.fastify.log.error(error)
+    // Send error response
+    reply
+        .code(500)
+        .send({success:false, error: error})
+})
+
 app.fastify.after(() => {
     // Declare a route
     app.fastify.get('/', function (request, reply) {
@@ -105,7 +114,9 @@ app.fastify.after(() => {
                 .send(res)
         } catch (e) {
             console.error(e)
-            reply.send({success: false, statusCode: 500})
+            reply
+                .code(500)
+                .send({success: false })
         }
     })
     app.fastify.post('/disconnect', function (request, reply) {
@@ -120,7 +131,9 @@ app.fastify.after(() => {
                 .send(res)
         } catch (e) {
             console.error(e)
-            reply.send({success: false, statusCode: 500})
+            reply
+                .code(500)
+                .send({success: false })
         }
     })
     app.fastify.post('/exec', function (request, reply) {
@@ -136,7 +149,9 @@ app.fastify.after(() => {
                 .send(res)
         } catch (e) {
             console.error(e)
-            reply.send({success: false, statusCode: 500 })
+            reply
+                .code(500)
+                .send({success: false })
         }
     })
 })

@@ -78,6 +78,9 @@ class Kkm {
                 ResultCodeDescription: this.FR.ResultCodeDescription
             }
         }
+        if(this.logger){
+            this.logger.info(res)
+        }
         return res
     }
 
@@ -90,19 +93,19 @@ class Kkm {
             LogicalNumber: this.FR.LogicalNumber,
             OpenDocumentNumber: this.FR.OpenDocumentNumber,
             ECRFlags: this.FR.ECRFlags,
-            ReceiptRibbonIsPresent: this.FR.ReceiptRibbonIsPresent,
-            JournalRibbonIsPresent: this.FR.JournalRibbonIsPresent,
-            SlipDocumentIsPresent: this.FR.SlipDocumentIsPresent,
-            SlipDocumentIsMoving: this.FR.SlipDocumentIsMoving,
+//            ReceiptRibbonIsPresent: this.FR.ReceiptRibbonIsPresent,
+//            JournalRibbonIsPresent: this.FR.JournalRibbonIsPresent,
+//            SlipDocumentIsPresent: this.FR.SlipDocumentIsPresent,
+//            SlipDocumentIsMoving: this.FR.SlipDocumentIsMoving,
             PointPosition: this.FR.PointPosition,
             EKLZIsPresent: this.FR.EKLZIsPresent,
-            JournalRibbonOpticalSensor: this.FR.JournalRibbonOpticalSensor,
-            ReceiptRibbonOpticalSensor: this.FR.ReceiptRibbonOpticalSensor,
-            JournalRibbonLever: this.FR.JournalRibbonLever,
-            ReceiptRibbonLever: this.FR.ReceiptRibbonLever,
-            LidPositionSensor: this.FR.LidPositionSensor,
-            IsPrinterLeftSensorFailure: this.FR.IsPrinterLeftSensorFailure,
-            IsPrinterRightSensorFailure: this.FR.IsPrinterRightSensorFailure,
+//            JournalRibbonOpticalSensor: this.FR.JournalRibbonOpticalSensor,
+//            ReceiptRibbonOpticalSensor: this.FR.ReceiptRibbonOpticalSensor,
+//            JournalRibbonLever: this.FR.JournalRibbonLever,
+//            ReceiptRibbonLever: this.FR.ReceiptRibbonLever,
+//            LidPositionSensor: this.FR.LidPositionSensor,
+//            IsPrinterLeftSensorFailure: this.FR.IsPrinterLeftSensorFailure,
+//            IsPrinterRightSensorFailure: this.FR.IsPrinterRightSensorFailure,
             IsDrawerOpen: this.FR.IsDrawerOpen,
             IsEKLZOverflow: this.FR.IsEKLZOverflow,
             QuantityPointPosition: this.FR.QuantityPointPosition,
@@ -113,13 +116,13 @@ class Kkm {
             ECRAdvancedMode: this.FR.ECRAdvancedMode,
             ECRAdvancedModeDescription: this.FR.ECRAdvancedModeDescription,
             PortNumber: this.FR.PortNumber,
-            FMSoftVersion: this.FR.FMSoftVersion,
-            FMBuild: this.FR.FMBuild,
-            FMSoftDate: this.FR.FMSoftDate,
+//            FMSoftVersion: this.FR.FMSoftVersion,
+//            FMBuild: this.FR.FMBuild,
+//            FMSoftDate: this.FR.FMSoftDate,
             Date: this.FR.Date,
             Time: this.FR.Time,
             TimeStr: this.FR.TimeStr,
-            LicenseIsPresent: this.FR.LicenseIsPresent,
+//            LicenseIsPresent: this.FR.LicenseIsPresent,
             FMOverflow: this.FR.FMOverflow,
             IsBatteryLow: this.FR.IsBatteryLow,
             IsLastFMRecordCorrupted: this.FR.IsLastFMRecordCorrupted,
@@ -129,8 +132,8 @@ class Kkm {
             SessionNumber: this.FR.SessionNumber,
             FreeRecordInFM: this.FR.FreeRecordInFM,
             RegistrationNumber: this.FR.RegistrationNumber,
-            FreeRegistration: this.FR.FreeRegistration,
-            INN: this.FR.INN,
+//            FreeRegistration: this.FR.FreeRegistration,
+//            INN: this.FR.INN,
         }
     }
 
