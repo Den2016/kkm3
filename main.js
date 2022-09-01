@@ -60,7 +60,8 @@ function createWindow() {
         app.quit();
     })
 }
-
+// прописываем в автозагрузку при запуске
+// не очень красивое решение, но пока другого нет
 let exename=app.getPath("exe")
 if(!exename.includes('node_modules')){
     app.setLoginItemSettings({
@@ -119,6 +120,23 @@ app.fastify.after(() => {
                 .send({success: false })
         }
     })
+    app.fastify.get('/connect', function (request, reply) {
+        //console.log(request.body)
+        try {
+            let res = app.fastify.kkm.connect()
+            res.success = true
+            res.statusCode = 200;
+            reply
+                .code(200)
+                .header('Content-Type', 'application/json; charset=utf-8')
+                .send(res)
+        } catch (e) {
+            console.error(e)
+            reply
+                .code(500)
+                .send({success: false })
+        }
+    })
     app.fastify.post('/disconnect', function (request, reply) {
         //console.log(request)
         try {
@@ -148,6 +166,36 @@ app.fastify.after(() => {
                 .header('Content-Type', 'application/json; charset=utf-8')
                 .send(res)
         } catch (e) {
+            console.error(e)
+            reply
+                .code(500)
+                .send({success: false })
+        }
+    })
+    app.fastify.post('/test',function(request,reply){
+        try{
+            reply
+                .code(200)
+                .send({success: true })
+
+        }catch (e) {
+            console.error(e)
+            reply
+                .code(500)
+                .send({success: false })
+        }
+    })
+    app.fastify.post('/printcheck',function(request,reply){
+        try{
+            let res = app.fastify.kkm.printCheck(request.body)
+            res.success = true
+            res.statusCode = 200;
+            //console.log(res)
+            reply
+                .code(200)
+                .header('Content-Type', 'application/json; charset=utf-8')
+                .send(res)
+        }catch (e) {
             console.error(e)
             reply
                 .code(500)

@@ -84,6 +84,158 @@ class Kkm {
         return res
     }
 
+    printCheck(body){
+        let res={}
+        if(this.logger){
+            this.logger.info(body)
+        }
+        /*
+        Алгоритм пробивки чека
+        1. выставляем СНО
+        2. пробиваем товары
+        3. печатаем текст чека
+        4. закрываем чек
+        после каждой операции проверяем this.FR.ResultCode, если не 0 - выход с занесением ошибок в результат
+         */
+        console.log("1. Выставляем СНО")
+        this.FR.Password=30;
+        this.FR.TableNumber=18;
+        this.FR.RowNumber=1;
+        this.FR.FieldNumber=5;
+
+        this.FR.ValueOfFieldInteger=(Number)(body.sno)
+        this.FR.ValueOfFieldString=(String)(body.sno)
+        this.FR.WriteTable();
+
+        console.log("2. пробиваем товары")
+        let goods=body.goods;
+        for (let i=0;i<goods.length;i++){
+            let x=goods[i]
+            this.FR.Quantity =  x.count
+            this.FR.Price = x.price
+            this.FR.Department = body.department
+            this.FR.StringForPrinting = x.name
+            if(body.mode==='sale'){
+                this.FR.Sale()
+            }else{
+                this.FR.ReturnSale()
+            }
+            if(!this._waitPrinting()){
+                this.FR.CancelCheck()
+                res = {
+                    ...res, ...this._getProps(), ...{
+                        ResultCode: this.FR.ResultCode,
+                        ResultCodeDescription: this.FR.ResultCodeDescription
+                    }
+                }
+                if(this.logger){
+                    this.logger.info(res)
+                }
+                return res
+            }
+        }
+        console.log("3. печатаем текст чека")
+        let text=body.text
+        for (let i=0;i<text.length;i++) {
+            let x = text[i]
+            this.FR.StringForPrinting = x.text
+            if(x.font==1){
+                this.FR.PrintWideString();
+            }else{
+                this.FR.PrintString();
+            }
+            if(!this._waitPrinting()){
+                this.FR.CancelCheck()
+                res = {
+                    ...res, ...this._getProps(), ...{
+                        ResultCode: this.FR.ResultCode,
+                        ResultCodeDescription: this.FR.ResultCodeDescription
+                    }
+                }
+                if(this.logger){
+                    this.logger.info(res)
+                }
+                return res
+            }
+            if(this.FR.ResultCode!==0){
+                this.FR.CancelCheck()
+                res = {
+                    ...res, ...this._getProps(), ...{
+                        ResultCode: this.FR.ResultCode,
+                        ResultCodeDescription: this.FR.ResultCodeDescription
+                    }
+                }
+                if(this.logger){
+                    this.logger.info(res)
+                }
+                return res
+            }
+        }
+
+        console.log("4. Закрываем чек")
+        this.FR.Summ1 = body.summ1
+        this.FR.Summ2 = body.summ2
+        this.FR.Summ3 = body.summ3
+        this.FR.Summ4 = body.summ4
+        this.FR.DiscountOnCheck = 0
+        this.FR.StringForPrinting="Спасибо за покупку!"
+        this.FR.CloseCheck()
+        if(this.FR.ResultCode==0){
+            if(!this._waitPrinting()){
+                this.FR.CancelCheck()
+                res = {
+                    ...res, ...this._getProps(), ...{
+                        ResultCode: this.FR.ResultCode,
+                        ResultCodeDescription: this.FR.ResultCodeDescription
+                    }
+                }
+                if(this.logger){
+                    this.logger.info(res)
+                }
+                return res
+            }
+            res = {
+                ...res, ...this._getProps(), ...{
+                    ResultCode: this.FR.ResultCode,
+                    ResultCodeDescription: this.FR.ResultCodeDescription
+                }
+            }
+            if(this.logger){
+                this.logger.info(res)
+            }
+            return res
+        }else{
+            res = {
+                ...res, ...this._getProps(), ...{
+                    ResultCode: this.FR.ResultCode,
+                    ResultCodeDescription: this.FR.ResultCodeDescription
+                }
+            }
+            this.FR.CancelCheck()
+            if(this.logger){
+                this.logger.info(res)
+            }
+            return res
+
+        }
+
+    }
+
+    _waitPrinting(){
+        while(true){
+            this.FR.GetShortECRStatus()
+            let m = this.FR.ECRAdvancedMode
+            if(m==0){
+                return true
+            }
+            if(m==1 || m==2){
+                return false
+            }
+            if(m==3){
+                this.FR.ContinuePrint()
+            }
+        }
+    }
     _getProps() {
         return {
             OperatorNumber: this.FR.OperatorNumber,
