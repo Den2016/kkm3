@@ -62,7 +62,8 @@ Cервер ККМ Штрих-М, обслуживающий http запросы
   "RegistrationNumber": 0,
   "ResultCode": 0,
   "ResultCodeDescription": "Ошибок нет",
-  "success": true
+  "success": true,
+  "INN": "8812345678"
 }
 ```
 
