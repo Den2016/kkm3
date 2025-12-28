@@ -144,3 +144,22 @@ JSON, содержащий в себе еще и `"ContentsOfOperationRegister" 
   { "action": "command", "name": "CloseCheck" }
 ]
 ```
+
+
+
+# Особенности сборки
+
+Поскольку проект делался для использования на машинах с Windows 7 x86, то разрабатывался на 32хбитном nodejs не выше 16.20.2. Для успешной сборки потребуется также 
+* Python 3.11 (winget install Python.Python.3.11).
+* node-gyp@8 локально (npm install node-gyp@8 --save-dev).
+* electron-builder@22 глобально (npm install -g electron-builder@22).
+* Пересборка нативных зависимостей с electron-rebuild@3 и Python 3.11.
+
+Пример сборки с использованием установленного, но не прописанного в PATH Python
+```
+$env:PYTHON = "C:\Users\User\AppData\Local\Programs\Python\Python311\python.exe"; npx electron-rebuild
+```
+Путь можно узнать через 
+```
+py --list-paths
+```
