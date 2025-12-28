@@ -285,7 +285,7 @@ class Kkm {
             FreeRecordInFM: this.FR.FreeRecordInFM,
             RegistrationNumber: this.FR.RegistrationNumber,
 //            FreeRegistration: this.FR.FreeRegistration,
-//            INN: this.FR.INN,
+            INN: this.FR.INN,
         }
     }
 

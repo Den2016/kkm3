@@ -1,6 +1,6 @@
 {
   "name": "kkm3",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "shtrih-m kkm server",
   "main": "main.js",
   "scripts": {
@@ -32,7 +32,7 @@
   "homepage": "https://github.com/Den2016/kkm3#readme",
   "devDependencies": {
     "electron": "^8.2.3",
-    "electron-rebuild": "^1.10.1"
+    "node-gyp": "^8.4.1"
   },
   "dependencies": {
     "electron-log": "^4.1.1",
